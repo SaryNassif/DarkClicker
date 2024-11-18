@@ -161,7 +161,7 @@ header p{
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
-    z-index: 1000;
+    z-index: 0;
 }
 
 .popup-content {
@@ -187,4 +187,28 @@ header p{
     cursor: pointer;
     color: #000000;
     font-weight: bold;
+}
+
+.slider {
+    appearance: none;
+    width: 100%;
+    height: 25px;
+    background: #5b5858;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    border-radius: 10px;
+}
+
+.slider::-webkit-slider-thumb {
+    appearance: none; /* Remove default styles */
+    width: 20px; /* Width of the thumb */
+    height: 20px; /* Height of the thumb */
+    background-color: #f5b642; /* Custom color for the thumb */
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.slider:hover {
+    opacity: 1;
 }
