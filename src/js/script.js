@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Function to handle opening and closing popups
     function handlePopup(buttonSelector, popupSelector) {
         const button = document.querySelector(buttonSelector);
         const popup = document.querySelector(popupSelector);
@@ -9,17 +8,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const close = popup.querySelector('.close');
 
-        // Open the popup
         button.addEventListener('click', () => {
             popup.style.display = 'block';
         });
 
-        // Close the popup when the close button is clicked
         close.addEventListener('click', () => {
             popup.style.display = 'none';
         });
 
-        // Close the popup when clicking outside the content
         window.addEventListener('click', (event) => {
             if (event.target === popup) {
                 popup.style.display = 'none';
@@ -27,8 +23,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Attach popup handlers
     handlePopup('.settings', '#settingsPopup');
     handlePopup('.statistics', '#statisticsPopup');
     handlePopup('.skin', '#skinsPopup');
+
+    const clicker = document.querySelector('.clicker');
+    const darksDisplay = document.querySelector('header h1');
+    const darksPerSecondDisplay = document.querySelector('header p');
+
+    let darks = 0;
+    let darksPerSecond = 0;
+
+    function handleClick() {
+        darks++;
+        darksDisplay.textContent = `${darks} Darks`;
+        darksPerSecondDisplay.textContent = `Darks per second: ${darksPerSecond}`;
+    }
+
+    if (clicker) {
+        clicker.addEventListener('click', handleClick);
+    } else {
+        console.error('Clicker element not found');
+    }
+
+    function generatePassiveDarks() {
+        darks += darksPerSecond;
+        darksDisplay.textContent = `${darks} Darks`;
+    }
+
+    setInterval(generatePassiveDarks, 1000);
 });
