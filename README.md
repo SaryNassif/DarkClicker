@@ -15,14 +15,12 @@
 2. Open The index.html file in any modern browser
 
 ## Development
-
 ### Technologies Used:
 - **HTML**: Structure of the web page.
 - **CSS**: Styling and layout of the interface.
 - **JavaScript**: Interactive game logic.
 
 ## License
-
 This game is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 
 ### Key Terms
