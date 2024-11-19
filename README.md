@@ -20,3 +20,14 @@
 - **HTML**: Structure of the web page.
 - **CSS**: Styling and layout of the interface.
 - **JavaScript**: Interactive game logic.
+
+## License
+
+This game is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+
+### Key Terms
+- No modifications or derivative works are allowed.
+- The code and assets may not be used for commercial purposes.
+- Proper attribution is required.
+
+Copyright © 2024 sarynassif
