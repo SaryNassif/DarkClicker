@@ -87,6 +87,7 @@ header p{
     cursor: pointer;
     transition: transform 0.1s ease, box-shadow 0.1s ease;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
+    border: 2px solid hsl(0, 1%, 19%)
 }
 
 .clicker:hover {
@@ -211,4 +212,51 @@ header p{
 
 .slider:hover {
     opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .bigcontainer {
+        flex-direction: column;
+    }
+
+    .container1 {
+        width: 100%;
+        height: 70%;
+    }
+
+    .boxbelowheader{
+        padding: 50px;
+    }
+
+    .container2 {
+        height: 30%;
+        width: 100%;
+        border-left: 0;
+        border-top: 2px solid #444;
+    }
+
+    .statistics,.skin{
+        padding: 20px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .settings{
+        padding: 20px;
+        width: 65px;
+        height: 30px;
+    }
+
+    .top-left {
+        position: absolute; 
+        top: 5px;
+        left: 5px;
+        display: flex;
+        gap: 5px;
+    }
+
+    .clicker{
+        width: 130px;
+        height: 130px;
+    }
 }
