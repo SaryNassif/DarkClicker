@@ -220,12 +220,14 @@ button, .clicker, input[type="range"] {
 
 @media (max-width: 768px) {
     .bigcontainer {
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: #444 #212020;
         flex-direction: column;
     }
 
     .container1 {
         width: 100%;
-        height: 70%;
     }
 
     .boxbelowheader{
@@ -233,8 +235,9 @@ button, .clicker, input[type="range"] {
     }
 
     .container2 {
-        height: 30%;
         width: 100%;
+        height: 50%;
+        padding: 10px;
         border-left: 0;
         border-top: 2px solid #444;
     }
