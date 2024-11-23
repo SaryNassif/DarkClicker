@@ -214,6 +214,10 @@ header p{
     opacity: 1;
 }
 
+button, .clicker, input[type="range"] {
+    touch-action: manipulation;
+}
+
 @media (max-width: 768px) {
     .bigcontainer {
         flex-direction: column;
