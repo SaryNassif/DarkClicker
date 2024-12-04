@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Popup logic remains the same
     function handlePopup(buttonSelector, popupSelector) {
         const button = document.querySelector(buttonSelector);
         const popup = document.querySelector(popupSelector);
@@ -27,17 +28,31 @@ document.addEventListener('DOMContentLoaded', () => {
     handlePopup('.statistics', '#statisticsPopup');
     handlePopup('.skin', '#skinsPopup');
 
+    // Game variables
     const clicker = document.querySelector('.clicker');
     const darksDisplay = document.querySelector('header h1');
     const darksPerSecondDisplay = document.querySelector('header p');
+    const statsPopup = document.querySelector('#statisticsPopup .popup-content');
 
     let darks = 0;
+    let allTimeDarks = 0;
     let darksPerSecond = 0;
 
-    function handleClick() {
-        darks++;
+    const upgradeButtons = document.querySelectorAll('.upgradebox');
+    const upgradeThresholds = [0, 0, 5000, 5000, 20000, 20000, 50000, 50000, 100000, 100000, 250000, 250000];
+
+    // Update dark counters
+    function updateDarksDisplay() {
         darksDisplay.textContent = `${darks} Darks`;
         darksPerSecondDisplay.textContent = `Darks per second: ${darksPerSecond}`;
+    }
+
+    // Handle clicks on the clicker button
+    function handleClick() {
+        darks++;
+        allTimeDarks++;
+        updateDarksDisplay();
+        checkUpgrades();
     }
 
     if (clicker) {
@@ -46,10 +61,42 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Clicker element not found');
     }
 
+    // Generate passive darks per second
     function generatePassiveDarks() {
         darks += darksPerSecond;
-        darksDisplay.textContent = `${darks} Darks`;
+        updateDarksDisplay();
     }
 
     setInterval(generatePassiveDarks, 1000);
+
+    // Check for upgrades to unlock
+    function checkUpgrades() {
+        upgradeButtons.forEach((button, index) => {
+            if (darks >= upgradeThresholds[index]) {
+                button.style.display = 'block';
+            } else {
+                button.style.display = 'none';
+            }
+        });
+    }
+
+    // Initial unlock for the first two upgrades
+    checkUpgrades();
+
+    // Add stats to the stats menu
+    function updateStatsMenu() {
+        statsPopup.innerHTML = `
+            <span class="close">&times;</span>
+            <h2>Statistics</h2>
+            <p>All-Time Darks: ${allTimeDarks}</p>
+            <p>Current Darks: ${darks}</p>
+            <p>Darks per Second: ${darksPerSecond}</p>
+        `;
+        const close = statsPopup.querySelector('.close');
+        close.addEventListener('click', () => {
+            document.querySelector('#statisticsPopup').style.display = 'none';
+        });
+    }
+
+    setInterval(updateStatsMenu, 500);
 });
