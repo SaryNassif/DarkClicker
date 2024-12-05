@@ -37,9 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let darks = 0;
     let allTimeDarks = 0;
     let darksPerSecond = 0;
+    let darksPerClick = 1;
 
     const upgradeButtons = document.querySelectorAll('.upgradebox');
     const upgradeThresholds = [0, 0, 5000, 5000, 20000, 20000, 50000, 50000, 100000, 100000, 250000, 250000];
+
+    const upgrades = [
+        { price: 10, effect: () => { darksPerClick++; }, label: "Dark Clicker" },
+        { price: 50, effect: () => { darksPerSecond++; }, label: "Eclipse Pointer" }
+    ];
 
     // Update dark counters
     function updateDarksDisplay() {
@@ -49,8 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle clicks on the clicker button
     function handleClick() {
-        darks++;
-        allTimeDarks++;
+        darks += darksPerClick;
+        allTimeDarks += darksPerClick;
         updateDarksDisplay();
         checkUpgrades();
     }
@@ -79,6 +85,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Add upgrade functionality to upgrade buttons
+    upgradeButtons.forEach((button, index) => {
+        if (upgrades[index]) {
+            button.textContent = upgrades[index].label;
+            button.addEventListener('click', () => {
+                if (darks >= upgrades[index].price) {
+                    darks -= upgrades[index].price;
+                    upgrades[index].effect();
+                    upgrades[index].price = Math.floor(upgrades[index].price * 1.5);
+                    updateDarksDisplay();
+                    checkUpgrades();
+                }
+            });
+        }
+    });
 
     // Initial unlock for the first two upgrades
     checkUpgrades();
